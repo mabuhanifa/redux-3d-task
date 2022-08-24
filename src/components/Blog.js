@@ -1,13 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filter_author } from "../redux/actions/blogActions";
+import { useDispatch } from "react-redux";
+import { filter_author, filter_category } from "../redux/actions/blogActions";
 
 const Blog = ({ blog }) => {
   const { category, title, author, img, a_img, date, time } = blog;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
   const filterAuthor = (a) => {
     dispatch(filter_author(a));
+  };
+  const filterCategory = (a) => {
+    dispatch(filter_category(a));
     console.log(a);
   };
   return (
@@ -18,7 +20,10 @@ const Blog = ({ blog }) => {
 
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-indigo-600">
+          <p
+            onClick={() => filterCategory(category)}
+            className="text-sm font-medium text-indigo-600"
+          >
             <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
               {category}
             </span>
@@ -29,11 +34,16 @@ const Blog = ({ blog }) => {
         </div>
         <div className="mt-6 flex items-center">
           <div className="flex-shrink-0">
-            <img className="h-10 w-10 rounded-full" src={a_img} alt="" />
+            <img
+              src={a_img}
+              onClick={() => filterAuthor(author)}
+              className="h-10 w-10 rounded-full"
+              alt="img"
+            />
           </div>
           <div className="ml-3">
             <p
-              onClick={() => filterAuthor( author )}
+              onClick={() => filterAuthor(author)}
               className="text-sm font-medium text-gray-900 hover:underline"
             >
               {author}

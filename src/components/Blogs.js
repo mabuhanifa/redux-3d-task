@@ -1,11 +1,32 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "../assets/favicon.png";
-import search from "../assets/search.svg";
+import searchIcon from "../assets/search.svg";
+import { all, searchTitle } from "../redux/actions/blogActions";
+import { initialState } from "../redux/reducer/initialState";
 import Blog from "./Blog";
 const Blogs = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
+      const context = this;
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 2000);
+    };
+  };
+  const search = (a) => {
+    dispatch(searchTitle(a.toLowerCase()));
+    console.log(state);
+  };
+  const optimized = debounce(search);
+
   return (
     <div>
       <nav className="bg-slate-100 shadow-md">
@@ -20,8 +41,28 @@ const Blogs = () => {
           type="search"
           name="search"
           placeholder="Search"
+          onChange={(e) => optimized(e.target.value)}
+          onClick={(e) => optimized(e.target.value)}
         />
-        <img className="inline h-6 cursor-pointer" src={search} alt="Search" />
+        <img
+          className="inline h-6 cursor-pointer"
+          src={searchIcon}
+          alt="Search"
+        />
+      </div>
+      <div>
+        <div className="flex justify-center p-5">
+          <button
+            onClick={() => dispatch(all())}
+            className={
+              state === initialState
+                ? "hidden"
+                : "bg-red-600 text-white p-2 rounded"
+            }
+          >
+            Clear Filter & Search
+          </button>
+        </div>
       </div>
       <section className="relative bg-gray-50 pt-8 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-16 lg:px-8">
         <div className="relative max-w-7xl mx-auto">
