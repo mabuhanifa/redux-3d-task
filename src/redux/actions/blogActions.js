@@ -1,14 +1,24 @@
-import { filter, search } from "../constants/blogConstants";
+import {
+    FILTER_AUTHOR,
+    FILTER_CATEGORY,
+    SEARCH
+} from "../constants/blogConstants";
 
-export const SEARCH = (value) => {
+export const search = (value) => {
   return {
-    type: search,
+    type: SEARCH,
     payload: value,
   };
 };
-export const FILTER = (value) => {
+export const filter_author = (value) => {
   return {
-    type: filter,
+    type: FILTER_AUTHOR,
+    payload: value,
+  };
+};
+export const filter_category = (value) => {
+  return {
+    type: FILTER_CATEGORY,
     payload: value,
   };
 };

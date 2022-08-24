@@ -1,26 +1,16 @@
-import { FILTER, SEARCH } from "../actions/blogActions";
+import { FILTER_AUTHOR, SEARCH } from "../constants/blogConstants";
 import { initialState } from "./initialState";
 
 const blogReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  console.log(type);
+  console.log(payload);
   switch (type) {
-    case FILTER:
-      const newState = {
-        ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          qty: state[payload.id].qty + 1,
-        },
-      };
+    case FILTER_AUTHOR:
+      const newState = state.filter((state) => state.author.includes(payload));
       return newState;
     case SEARCH:
       const newUpdatedState = {
         ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          qty: state[payload.id].qty - 1,
-        },
       };
       return newUpdatedState;
 

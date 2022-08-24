@@ -1,2 +1,3 @@
-export const filter = "blog/filter";
-export const search = "blog/search";
+export const FILTER_AUTHOR = "blog/filter-author";
+export const FILTER_CATEGORY = "blog/filter-category";
+export const SEARCH = "blog/search";

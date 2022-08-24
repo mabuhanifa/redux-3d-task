@@ -1,10 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import icon from "../assets/favicon.png";
 import search from "../assets/search.svg";
 import Blog from "./Blog";
 const Blogs = () => {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
   return (
     <div>
       <nav className="bg-slate-100 shadow-md">
@@ -35,9 +36,9 @@ const Blogs = () => {
           </div>
           {/* <!-- card grid  --> */}
           <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-
-           {state.map((blog)=>{ return<Blog blog={blog} key={blog.id}/>})}
-         
+            {state.map((blog) => {
+              return <Blog blog={blog} key={blog.id} />;
+            })}
           </div>
         </div>
       </section>

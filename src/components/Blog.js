@@ -1,7 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filter_author } from "../redux/actions/blogActions";
 
 const Blog = ({ blog }) => {
   const { category, title, author, img, a_img, date, time } = blog;
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const filterAuthor = (a) => {
+    dispatch(filter_author(a));
+    console.log(a);
+  };
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
       <div className="flex-shrink-0">
@@ -15,16 +23,19 @@ const Blog = ({ blog }) => {
               {category}
             </span>
           </p>
-          <p className="block mt-1">
+          <a className="block mt-1">
             <p className="text-xl font-semibold text-gray-900">{title}</p>
-          </p>
+          </a>
         </div>
         <div className="mt-6 flex items-center">
           <div className="flex-shrink-0">
             <img className="h-10 w-10 rounded-full" src={a_img} alt="" />
           </div>
           <div className="ml-3">
-            <p className="text-sm font-medium text-gray-900 hover:underline">
+            <p
+              onClick={() => filterAuthor( author )}
+              className="text-sm font-medium text-gray-900 hover:underline"
+            >
               {author}
             </p>
             <div className="flex space-x-1 text-sm text-gray-500">
