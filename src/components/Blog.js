@@ -28,9 +28,9 @@ const Blog = ({ blog }) => {
               {category}
             </span>
           </p>
-          <a className="block mt-1">
-            <p className="text-xl font-semibold text-gray-900">{title}</p>
-          </a>
+         
+            <p className="block mt-3 text-xl font-semibold text-gray-900">{title}</p>
+         
         </div>
         <div className="mt-6 flex items-center">
           <div className="flex-shrink-0">
