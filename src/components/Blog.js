@@ -15,9 +15,9 @@ const Blog = ({ blog }) => {
               {category}
             </span>
           </p>
-          <a href="/" className="block mt-1">
+          <p className="block mt-1">
             <p className="text-xl font-semibold text-gray-900">{title}</p>
-          </a>
+          </p>
         </div>
         <div className="mt-6 flex items-center">
           <div className="flex-shrink-0">

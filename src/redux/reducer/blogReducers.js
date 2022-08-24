@@ -1,10 +1,11 @@
+import { FILTER, SEARCH } from "../actions/blogActions";
 import { initialState } from "./initialState";
 
 const blogReducer = (state = initialState, action) => {
   const { type, payload } = action;
   console.log(type);
   switch (type) {
-    case "INCREMENT":
+    case FILTER:
       const newState = {
         ...state,
         [payload.id]: {
@@ -13,7 +14,7 @@ const blogReducer = (state = initialState, action) => {
         },
       };
       return newState;
-    case "DECREMENT":
+    case SEARCH:
       const newUpdatedState = {
         ...state,
         [payload.id]: {
