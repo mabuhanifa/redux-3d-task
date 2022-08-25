@@ -21,13 +21,9 @@ const blogReducer = (state = initialState, action) => {
       const newUpdatedState = state.filter((state) =>
         state.title.toLowerCase().includes(payload)
       );
-      console.log(payload);
       return newUpdatedState;
     case ALL:
-      console.log(state)
       return initialState;
-      
-
     default:
       return state;
   }

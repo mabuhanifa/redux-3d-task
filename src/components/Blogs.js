@@ -23,7 +23,6 @@ const Blogs = () => {
   };
   const search = (a) => {
     dispatch(searchTitle(a.toLowerCase()));
-    console.log(state);
   };
   const optimized = debounce(search);
 

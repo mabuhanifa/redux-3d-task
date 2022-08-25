@@ -10,7 +10,6 @@ const Blog = ({ blog }) => {
   };
   const filterCategory = (a) => {
     dispatch(filter_category(a));
-    console.log(a);
   };
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
